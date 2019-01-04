@@ -5,7 +5,7 @@ import Article from './Articles/Article/Article';
 import Articles from './Articles/Articles/Articles';
 import NewArticle from './Articles/NewArticle/NewArticle';
 import Callback from './Auth/Callback/Callback';
-import Map from './Map/Map';
+import MapPage from './Map/MapPage';
 import SecuredRoute from './Auth/SecuredRoute/SecuredRoute';
 import auth from './Auth/Auth/Auth';
 import Login from './Auth/Auth/Login';
@@ -54,20 +54,17 @@ class App extends Component {
   render() {
     return (
       <React.Fragment>
-        <Header />
-        <div style={{ padding: 20 }}>
-          <Route
-            exact
-            path="/"
-            component={(auth.isAuthenticated() && Map) || (!auth.isAuthenticated() && Login)}
-          />
-          <Route exact path="/dashboard" component={Dashboard} />
-          <Route exact path="/callback" component={Callback} />
-          <Route exact path="/article/:articleId" component={Article} />
-          <Route exact path="/login" component={Login} />
-          <Route exact path="/register" component={Register} />
-          <SecuredRoute exact path="/new-article" component={NewArticle} />
-        </div>
+        <Route
+          exact
+          path="/"
+          component={(auth.isAuthenticated() && MapPage) || (!auth.isAuthenticated() && Login)}
+        />
+        <Route exact path="/dashboard" component={Dashboard} />
+        <Route exact path="/callback" component={Callback} />
+        <Route exact path="/article/:articleId" component={Article} />
+        <Route exact path="/login" component={Login} />
+        <Route exact path="/register" component={Register} />
+        <SecuredRoute exact path="/new-article" component={NewArticle} />
       </React.Fragment>
     );
   }
